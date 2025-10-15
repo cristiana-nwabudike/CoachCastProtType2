@@ -3,187 +3,654 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Couch Cast - Prime Theme Preview</title>
-    
+    <title>Couch Cast User Flow</title>
     <style>
-        :root {
-            --color-prime-accent: #FF9900; /* Amazon Orange/Yellow */
-            --color-dark-main: #141414; /* Dark Container/Card Background */
-            --color-dark-bg: #090909; /* Deep Background Base */
-            --color-dark-blue: #001122; /* Dark Blue for Gradient Accent */
-            --color-text-light: #f0f0f0; /* White/Light Text */
-            --color-text-fade: #999; /* Faded Text */
-            --color-accent: #e50914; /* Netflix Red for buttons/alerts */
-            --color-card-bg: #1c1c1c;
-        }
-
-        /* Base & Background (Prime Look) */
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--color-dark-bg);
-            color: var(--color-text-light);
-            line-height: 1.6;
+        * {
             margin: 0;
-            /* Simulating the image background with a solid color for a simple preview */
-            background-color: var(--color-dark-blue);
-        }
-        
-        h1, h2 {
-            color: var(--color-prime-accent);
-            margin-bottom: 0.5em;
-        }
-
-        /* Container Styles (Simulating the login/dashboard box) */
-        .preview-container {
-            max-width: 900px;
-            margin: 40px auto;
-            padding: 30px;
-            background: var(--color-dark-main);
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            border-top: 3px solid var(--color-prime-accent); 
-        }
-
-        /* Button Styles (Primary - Prime Orange) */
-        .btn-primary {
-            display: inline-block;
-            padding: 12px 20px;
-            background-color: var(--color-prime-accent); 
-            color: var(--color-dark-main);
-            border: none;
-            border-radius: 6px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            text-decoration: none;
-            transition: background-color 0.2s;
-            margin: 15px 0;
-        }
-        .btn-primary:hover {
-            background-color: #ffb84d;
-        }
-        
-        /* Friend List & Invites */
-        .list-header {
-            font-size: 1.2em;
-            color: var(--color-text-light);
-            margin: 30px 0 15px 0;
-            border-bottom: 1px solid #333;
-            padding-bottom: 5px;
-        }
-        .friend-list {
-            list-style: none;
             padding: 0;
+            box-sizing: border-box;
         }
-        .friend-list li {
+
+        body {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #7e22ce 100%);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            padding: 40px 20px;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: white;
+            font-size: 48px;
+            margin-bottom: 60px;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            font-weight: 800;
+        }
+
+        .flow-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            position: relative;
+        }
+
+        .phone-mockup {
+            background: #1a1d2e;
+            border-radius: 40px;
+            padding: 12px;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.5);
+            position: relative;
+            transform: scale(0.95);
+            transition: transform 0.3s ease;
+        }
+
+        .phone-mockup:hover {
+            transform: scale(1);
+        }
+
+        .phone-notch {
+            background: #0f1117;
+            height: 30px;
+            border-radius: 0 0 20px 20px;
+            margin: 0 auto 8px;
+            width: 150px;
+            position: relative;
+        }
+
+        .phone-screen {
+            background: linear-gradient(180deg, #1e2235 0%, #0f1117 100%);
+            border-radius: 30px;
+            padding: 30px 20px;
+            min-height: 600px;
+            position: relative;
+        }
+
+        .step-number {
+            background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            padding: 12px 0;
-            border-bottom: 1px solid #282828;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4);
+        }
+
+        .screen-title {
+            color: white;
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 30px;
+        }
+
+        /* Screen 1: Sign Up */
+        .couch-icons {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .couch-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+            color: white;
+            border: none;
+            padding: 16px 32px;
+            border-radius: 25px;
             font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 30px;
+            box-shadow: 0 8px 20px rgba(255, 107, 53, 0.3);
         }
-        .friend-list li:last-child {
-            border-bottom: none;
-        }
-        
-        /* Status Tags */
-        .friend-status {
-            font-size: 12px;
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-weight: bold;
-        }
-        .online {
-            background-color: #4CAF50; /* Green */
-            color: white;
-        }
-        .away {
-            background-color: var(--color-prime-accent); 
-            color: var(--color-dark-main);
-        }
-        .offline {
-            background-color: #666;
-            color: white;
-        }
-        
-        /* Join Button for Invites (Action Color - Red) */
-        .join-btn {
-            padding: 8px 15px;
-            background-color: var(--color-accent);
-            color: white;
-            border-radius: 4px;
-            text-decoration: none;
+
+        .text-link {
+            color: #9ca3af;
+            text-align: center;
+            margin-top: 15px;
             font-size: 14px;
-            font-weight: bold;
-            transition: background-color 0.2s;
-        }
-        .join-btn:hover {
-            background-color: #ff333d;
         }
 
-        /* Accent Text */
-        .accent-text {
-            color: var(--color-prime-accent);
-            font-weight: bold;
+        /* Screen 2: Gather Cast */
+        .guest-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 20px;
         }
 
-        .action-link {
-            color: var(--color-prime-accent);
-            text-decoration: none;
-            font-weight: bold;
-            transition: opacity 0.2s;
+        .guest-item {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 12px 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
-        .action-link:hover {
-            opacity: 0.8;
+
+        .guest-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+        }
+
+        .guest-name {
+            color: white;
+            font-weight: 500;
+        }
+
+        .guest-status {
+            color: #9ca3af;
+            font-size: 12px;
+        }
+
+        .remove-btn {
+            background: #ff6b35;
+            color: white;
+            border: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        .couch-icon-small {
+            color: #ff6b35;
+            font-size: 24px;
+        }
+
+        /* Screen 3: Platform Selection */
+        .platform-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .platform-item {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 15px;
+            padding: 20px 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .platform-item:hover {
+            border-color: #ff6b35;
+            background: rgba(255, 107, 53, 0.1);
+        }
+
+        .platform-logo {
+            width: 50px;
+            height: 50px;
+            background: white;
+            border-radius: 12px;
+            margin: 0 auto 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 10px;
+            color: #333;
+        }
+
+        .platform-name {
+            color: white;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        /* Screen 4: Search */
+        .search-bar {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .search-bar input {
+            background: none;
+            border: none;
+            color: white;
+            flex: 1;
+            font-size: 14px;
+        }
+
+        .search-bar input::placeholder {
+            color: #6b7280;
+        }
+
+        .movie-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .movie-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .movie-poster {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            height: 140px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 12px;
+            text-align: center;
+            padding: 10px;
+        }
+
+        .movie-title {
+            color: white;
+            font-size: 12px;
+            padding: 8px;
+            font-weight: 500;
+        }
+
+        /* Screen 5: Movie Details */
+        .movie-hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 20px;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .movie-hero-title {
+            color: white;
+            font-size: 24px;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        .movie-info {
+            color: #9ca3af;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .movie-description {
+            color: #d1d5db;
+            font-size: 13px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        /* Screen 6: In Session */
+        .video-player {
+            background: #000;
+            border-radius: 15px;
+            height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .play-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            color: #000;
+        }
+
+        .control-panel {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .control-btn {
+            background: rgba(255, 107, 53, 0.2);
+            border: 2px solid #ff6b35;
+            border-radius: 15px;
+            padding: 20px 10px;
+            color: white;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .control-btn:hover {
+            background: rgba(255, 107, 53, 0.3);
+        }
+
+        .control-icon {
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        .control-label {
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .playback-controls {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 15px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .playback-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* Arrows */
+        .arrow {
+            position: absolute;
+            color: #ff6b35;
+            font-size: 60px;
+            z-index: 10;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+        }
+
+        .arrow-right {
+            right: -50px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .arrow-down {
+            bottom: -60px;
+            left: 50%;
+            transform: translateX(-50%) rotate(90deg);
+        }
+
+        @media (max-width: 1200px) {
+            .flow-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .flow-container {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 32px;
+            }
         }
     </style>
 </head>
 <body>
-    
-    <div class="preview-container">
-        <h1>Couch Cast Dashboard</h1>
-        <p>Welcome back! Your next geo-independent movie night starts here.</p>
+    <div class="container">
+        <h1>🛋️ Couch Cast User Flow</h1>
+        
+        <div class="flow-container">
+            <!-- Screen 1: Sign Up -->
+            <div class="phone-mockup">
+                <div class="phone-notch"></div>
+                <div class="phone-screen">
+                    <div class="step-number">1</div>
+                    <div class="screen-title">Sign Up with Email</div>
+                    
+                    <div class="couch-icons">
+                        <div class="couch-icon">🛋️</div>
+                        <div class="couch-icon">🛋️</div>
+                    </div>
+                    
+                    <button class="btn-primary">Sign Up with Google</button>
+                    <div class="text-link">Already have an account? Log in</div>
+                </div>
+                <div class="arrow arrow-right">→</div>
+            </div>
 
-        <a href="invite.html" class="btn-primary">
-            + Start a New Couch Cast Session
-        </a>
+            <!-- Screen 2: Gather Cast -->
+            <div class="phone-mockup">
+                <div class="phone-notch"></div>
+                <div class="phone-screen">
+                    <div class="step-number">2</div>
+                    <div class="screen-title">Gather Your Cast</div>
+                    <p style="color: #9ca3af; font-size: 14px; margin-bottom: 20px;">Invite Guest via Link</p>
+                    
+                    <div class="guest-list">
+                        <div class="guest-item">
+                            <div class="guest-info">
+                                <div class="avatar">SJ</div>
+                                <div>
+                                    <div class="guest-name">Sarah J</div>
+                                    <div class="guest-status">Online now</div>
+                                </div>
+                            </div>
+                            <button class="remove-btn">×</button>
+                        </div>
+                        
+                        <div class="guest-item">
+                            <div class="guest-info">
+                                <div class="avatar">ML</div>
+                                <div>
+                                    <div class="guest-name">Mike L</div>
+                                    <div class="guest-status">Online now</div>
+                                </div>
+                            </div>
+                            <button class="remove-btn">×</button>
+                        </div>
+                        
+                        <div class="guest-item">
+                            <div class="guest-info">
+                                <div class="avatar">NR</div>
+                                <div>
+                                    <div class="guest-name">Nindo R</div>
+                                    <div class="guest-status">Offline</div>
+                                </div>
+                            </div>
+                            <button class="remove-btn">×</button>
+                        </div>
+                        
+                        <div class="guest-item">
+                            <div class="guest-info">
+                                <span class="couch-icon-small">🛋️</span>
+                                <div>
+                                    <div class="guest-name">Slowpaced</div>
+                                    <div class="guest-status">Invite sent</div>
+                                </div>
+                            </div>
+                            <button class="remove-btn">×</button>
+                        </div>
+                    </div>
+                    
+                    <button class="btn-primary" style="margin-top: 40px;">Continue</button>
+                </div>
+                <div class="arrow arrow-right">→</div>
+            </div>
 
-        <h3 class="list-header">Pending Invitations (Path 2)</h3>
-        <ul class="friend-list">
-            <li>
-                <span>Tom invited you to watch **<span class="accent-text">Dune</span>** (on Max)</span>
-                <a href="room.html?movie=Dune" class="join-btn">Join</a>
-            </li>
-            <li>
-                <span>Sarah invited you to watch **<span class="accent-text">Reacher</span>** (on Prime)</span>
-                <a href="room.html?movie=Reacher" class="join-btn">Join</a>
-            </li>
-        </ul>
+            <!-- Screen 3: Platform Selection -->
+            <div class="phone-mockup">
+                <div class="phone-notch"></div>
+                <div class="phone-screen">
+                    <div class="step-number">3</div>
+                    <div class="screen-title">Select Platform</div>
+                    <p style="color: #9ca3af; font-size: 14px; margin-bottom: 10px;">Where do you want to watch?</p>
+                    
+                    <div class="platform-grid">
+                        <div class="platform-item">
+                            <div class="platform-logo" style="background: #E50914;">N</div>
+                            <div class="platform-name">Netflix</div>
+                        </div>
+                        <div class="platform-item">
+                            <div class="platform-logo" style="background: #00A8E1;">P</div>
+                            <div class="platform-name">Prime</div>
+                        </div>
+                        <div class="platform-item">
+                            <div class="platform-logo" style="background: #1CE783;">H</div>
+                            <div class="platform-name">Hulu</div>
+                        </div>
+                        <div class="platform-item">
+                            <div class="platform-logo" style="background: #113CCF;">D+</div>
+                            <div class="platform-name">Disney+</div>
+                        </div>
+                        <div class="platform-item">
+                            <div class="platform-logo" style="background: #5500FF;">M</div>
+                            <div class="platform-name">Max</div>
+                        </div>
+                        <div class="platform-item">
+                            <div class="platform-logo">+</div>
+                            <div class="platform-name">More</div>
+                        </div>
+                    </div>
+                    
+                    <button class="btn-primary" style="margin-top: 40px;">Next</button>
+                </div>
+                <div class="arrow arrow-down">→</div>
+            </div>
 
-        <h3 class="list-header">Your Cosy Crew</h3>
-        <ul class="friend-list">
-            <li>
-                <span>Alex 'The Cinema' Lee</span>
-                <span class="friend-status online">Online</span>
-            </li>
-            <li>
-                <span>Jamie 'Popcorn' Chen</span>
-                <span class="friend-status away">Away</span>
-            </li>
-            <li>
-                <span>Chris 'The Critic' Evans</span>
-                <span class="friend-status offline">Offline</span>
-            </li>
-        </ul>
+            <!-- Screen 4: Search -->
+            <div class="phone-mockup">
+                <div class="phone-notch"></div>
+                <div class="phone-screen">
+                    <div class="step-number">4</div>
+                    <div class="screen-title">Find Movie</div>
+                    
+                    <div class="search-bar">
+                        <span>🔍</span>
+                        <input type="text" placeholder="Search for movies or shows...">
+                    </div>
+                    
+                    <p style="color: white; font-size: 14px; font-weight: 600; margin-bottom: 15px;">Trending Now</p>
+                    
+                    <div class="movie-grid">
+                        <div class="movie-card">
+                            <div class="movie-poster">The Grand Budapest Hotel</div>
+                            <div class="movie-title">Grand Budapest</div>
+                        </div>
+                        <div class="movie-card">
+                            <div class="movie-poster">Interstellar</div>
+                            <div class="movie-title">Interstellar</div>
+                        </div>
+                        <div class="movie-card">
+                            <div class="movie-poster">Inception</div>
+                            <div class="movie-title">Inception</div>
+                        </div>
+                        <div class="movie-card">
+                            <div class="movie-poster">The Matrix</div>
+                            <div class="movie-title">The Matrix</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="arrow arrow-right">→</div>
+            </div>
 
-        <p style="margin-top: 25px;">
-            <a href="#" class="action-link">Manage Friends</a> | <a href="#" class="action-link">View History</a>
-        </p>
-    </div>
-    
-    <div style="text-align:center; padding: 20px; font-size: 14px; color: var(--color-text-fade);">
-        Mockup Preview of the Dashboard (index.html) with Prime Styling.
+            <!-- Screen 5: Movie Details -->
+            <div class="phone-mockup">
+                <div class="phone-notch"></div>
+                <div class="phone-screen">
+                    <div class="step-number">5</div>
+                    <div class="screen-title">Select Movie</div>
+                    
+                    <div class="movie-hero">
+                        <div class="movie-hero-title">GRAND<br>BUDAPEST<br>HOTEL</div>
+                    </div>
+                    
+                    <div class="movie-info">2h 15m • Comedy, Drama • 2014</div>
+                    
+                    <div class="movie-description">
+                        The story follows the adventures of Gustave H, a legendary concierge at a famous European hotel between wars, and Zero Moustafa, the lobby boy who becomes his trusted friend.
+                    </div>
+                    
+                    <button class="btn-primary">Start Couch Cast Session</button>
+                </div>
+                <div class="arrow arrow-right">→</div>
+            </div>
+
+            <!-- Screen 6: In Session -->
+            <div class="phone-mockup">
+                <div class="phone-notch"></div>
+                <div class="phone-screen">
+                    <div class="step-number">6</div>
+                    <div class="screen-title">Movie Sharing</div>
+                    
+                    <div class="video-player">
+                        <div class="play-icon">▶</div>
+                    </div>
+                    
+                    <div class="control-panel">
+                        <div class="control-btn">
+                            <div class="control-icon">🎤</div>
+                            <div class="control-label">Voice Chat</div>
+                        </div>
+                        <div class="control-btn">
+                            <div class="control-icon">💬</div>
+                            <div class="control-label">Text Chat</div>
+                        </div>
+                        <div class="control-btn">
+                            <div class="control-icon">🎮</div>
+                            <div class="control-label">Controls</div>
+                        </div>
+                    </div>
+                    
+                    <div class="playback-controls">
+                        <button class="playback-btn">⏮</button>
+                        <button class="playback-btn">⏸</button>
+                        <button class="playback-btn">⏭</button>
+                        <button class="playback-btn">☰</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 </html>
