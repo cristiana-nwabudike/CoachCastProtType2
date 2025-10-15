@@ -24,20 +24,16 @@
             color: var(--color-text-light);
             line-height: 1.6;
             margin: 0;
+            /* Simulating the image background with a solid color for a simple preview */
+            background-color: var(--color-dark-blue);
         }
         
-        /* Simulating the Prime background effect */
-        .preview-body {
-            /* Using a dark blue/black background with the orange text */
-            background: var(--color-dark-bg);
-        }
-
         h1, h2 {
             color: var(--color-prime-accent);
             margin-bottom: 0.5em;
         }
 
-        /* Container Styles */
+        /* Container Styles (Simulating the login/dashboard box) */
         .preview-container {
             max-width: 900px;
             margin: 40px auto;
@@ -111,7 +107,7 @@
             color: white;
         }
         
-        /* Join Button for Invites (Action Color) */
+        /* Join Button for Invites (Action Color - Red) */
         .join-btn {
             padding: 8px 15px;
             background-color: var(--color-accent);
@@ -143,25 +139,25 @@
         }
     </style>
 </head>
-<body class="preview-body">
+<body>
     
     <div class="preview-container">
         <h1>Couch Cast Dashboard</h1>
         <p>Welcome back! Your next geo-independent movie night starts here.</p>
 
-        <a href="#" class="btn-primary">
+        <a href="invite.html" class="btn-primary">
             + Start a New Couch Cast Session
         </a>
 
-        <h3 class="list-header">Pending Invitations</h3>
+        <h3 class="list-header">Pending Invitations (Path 2)</h3>
         <ul class="friend-list">
             <li>
                 <span>Tom invited you to watch **<span class="accent-text">Dune</span>** (on Max)</span>
-                <a href="#" class="join-btn">Join</a>
+                <a href="room.html?movie=Dune" class="join-btn">Join</a>
             </li>
             <li>
                 <span>Sarah invited you to watch **<span class="accent-text">Reacher</span>** (on Prime)</span>
-                <a href="#" class="join-btn">Join</a>
+                <a href="room.html?movie=Reacher" class="join-btn">Join</a>
             </li>
         </ul>
 
@@ -187,7 +183,7 @@
     </div>
     
     <div style="text-align:center; padding: 20px; font-size: 14px; color: var(--color-text-fade);">
-        Mockup Preview of index.html (Dashboard State)
+        Mockup Preview of the Dashboard (index.html) with Prime Styling.
     </div>
 </body>
 </html>
